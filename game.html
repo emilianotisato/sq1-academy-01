@@ -13,6 +13,21 @@
     <script>
       // int();
       // promptUser();
+    
+      window.addEventListener('load', function () {
+	let hunger = document.getElementById('hungerStat');
+	hunger.textContent = pet.hunger;
+
+	let happiness = document.getElementById('happinesStat');
+	happiness.textContent = pet.happiness;
+
+	let sleep = document.getElementById('sleepStat');
+	sleep.textContent = pet.sleep;
+
+	let energy = document.getElementById('energyStat');
+	energy.textContent = pet.energy;
+      
+      });
     </script>
   </head>
   <body class="h-full">
@@ -301,10 +316,8 @@
                 <div
                   class="flex items-baseline text-2xl font-semibold text-indigo-600"
                 >
-                  71,897
-                  <span class="ml-2 text-sm font-medium text-gray-500"
-                    >from 70,946</span
-                  >
+                  <span id="hungerStat"></span>
+                 
                 </div>
 
                 <div
@@ -322,8 +335,6 @@
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <span class="sr-only"> Increased by </span>
-                  12%
                 </div>
               </dd>
             </div>
@@ -335,10 +346,8 @@
                 <div
                   class="flex items-baseline text-2xl font-semibold text-indigo-600"
                 >
-                  58.16%
-                  <span class="ml-2 text-sm font-medium text-gray-500"
-                    >from 56.14%</span
-                  >
+                  <span id="happinesStat"></span>
+                  
                 </div>
 
                 <div
@@ -356,8 +365,6 @@
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <span class="sr-only"> Increased by </span>
-                  2.02%
                 </div>
               </dd>
             </div>
@@ -369,10 +376,8 @@
                 <div
                   class="flex items-baseline text-2xl font-semibold text-indigo-600"
                 >
-                  24.57%
-                  <span class="ml-2 text-sm font-medium text-gray-500"
-                    >from 28.62%</span
-                  >
+                  <span id="sleepStat"></span>
+                  
                 </div>
 
                 <div
@@ -390,8 +395,6 @@
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <span class="sr-only"> Decreased by </span>
-                  4.05%
                 </div>
               </dd>
             </div>
@@ -403,10 +406,8 @@
                 <div
                   class="flex items-baseline text-2xl font-semibold text-indigo-600"
                 >
-                  24.57%
-                  <span class="ml-2 text-sm font-medium text-gray-500"
-                    >from 28.62%</span
-                  >
+                  <span id="energyStat"></span>
+                  
                 </div>
 
                 <div
@@ -424,8 +425,6 @@
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <span class="sr-only"> Decreased by </span>
-                  4.05%
                 </div>
               </dd>
             </div>
