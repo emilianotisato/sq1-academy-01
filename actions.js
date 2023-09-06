@@ -2,6 +2,20 @@ let max = 100;
 let min = 0;
 
 
+let updateFrontendStatus = function() {
+  let hunger = document.getElementById('hungerStat');
+	hunger.textContent = pet.hunger;
+
+	let happiness = document.getElementById('happinesStat');
+	happiness.textContent = pet.happiness;
+
+	let sleep = document.getElementById('sleepStat');
+	sleep.textContent = pet.sleep;
+
+	let energy = document.getElementById('energyStat');
+	energy.textContent = pet.energy;
+}
+
 let isPetAlive = function () {
   if(pet['hunger'] > max 
   || pet['sleep'] > max 
@@ -11,6 +25,10 @@ let isPetAlive = function () {
   } else {
     pet['isAlive'] = true;
   }
+
+  if(!pet['isAlive']) { 
+    document.getElementById('petImage').classList.add('deadPet');
+  }
 };
 let play = function () {
   pet["happiness"] += 20;
@@ -18,6 +36,7 @@ let play = function () {
   pet["hunger"] += 12;
   pet["sleep"] += 7;
   isPetAlive();
+  updateFrontendStatus();
 };
 
 let feed = function () {
@@ -27,6 +46,7 @@ let feed = function () {
   pet["sleep"] += 10;
 
   isPetAlive();
+  updateFrontendStatus();
 };
 
 let sleep = function () {
@@ -36,4 +56,5 @@ let sleep = function () {
   pet["hunger"] += 12;
 
   isPetAlive();
+  updateFrontendStatus();
 };
