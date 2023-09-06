@@ -141,7 +141,7 @@
 
                         <div class="mt-10 flex justify-center">
                             <span class="isolate inline-flex rounded-md shadow-sm">
-                                <button onclick="feed()" type="button"
+                                <button onclick="feed()" type="button" id="feedButton"
                                     class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -153,7 +153,7 @@
 
                                     Feed
                                 </button>
-                                <button onclick="play()" type="button"
+                                <button onclick="play(event)" type="button" id="playButton"
                                     class="relative inline-flex items-center gap-x-1.5 bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -164,7 +164,7 @@
                                     Play
                                 </button>
 
-                                <button onclick="sleep()" type="button"
+                                <button onclick="sleep()" type="button" id="sleepButton"
                                     class="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -176,6 +176,7 @@
                                 </button>
                             </span>
                         </div>
+
                     </div>
                 </div>
             </main>
