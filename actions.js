@@ -18,10 +18,10 @@ window.addEventListener("load", function () {
 
   let updateIsAliveStatus = function () {
     if (
-      pet["hunger"] > max ||
-      pet["sleep"] > max ||
-      pet["energy"] < min ||
-      pet["happiness"] < min
+      pet["hunger"] >= max ||
+      pet["sleep"] >= max ||
+      pet["energy"] <= min ||
+      pet["happiness"] <= min
     ) {
       pet["isAlive"] = false;
     } else {
@@ -38,33 +38,47 @@ window.addEventListener("load", function () {
     return pet["isAlive"];
   };
 
+  let limitPetStats = function () {
+    pet["happiness"] = Math.min(Math.max(pet["happiness"],min),max);
+    pet["energy"] = Math.min(Math.max(pet["energy"],min),max);
+    pet["hunger"] = Math.min(Math.max(pet["hunger"],min),max);
+    pet["sleep"] = Math.min(Math.max(pet["sleep"],min),max);
+   
+  }
+
   window.play = function () {
     pet["happiness"] += 20;
     pet["energy"] -= 10;
-    pet["hunger"] += 12;
+    pet["hunger"] -= 12;
     pet["sleep"] += 7;
+    limitPetStats();    
 
     updateIsAliveStatus();
     updateFrontendStatus();
+    
   };
 
   window.feed = function () {
     pet["happiness"] -= 12;
-    pet["hunger"] -= 20;
+    pet["hunger"] += 20;
     pet["energy"] -= 7;
     pet["sleep"] += 10;
+    limitPetStats();
 
     updateIsAliveStatus();
     updateFrontendStatus();
+    
   };
 
   window.sleep = function () {
     pet["happiness"] += 7;
     pet["sleep"] -= 20;
     pet["energy"] += 10;
-    pet["hunger"] += 12;
+    pet["hunger"] -= 12;
+    limitPetStats();
 
     updateIsAliveStatus();
     updateFrontendStatus();
+    
   };
 });
