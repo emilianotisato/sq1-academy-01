@@ -8,12 +8,18 @@ window.addEventListener("load", function () {
   let happinessStat = document.getElementById("happinesStat");
   let sleepStat = document.getElementById("sleepStat");
   let energyStat = document.getElementById("energyStat");
+  
 
   window.updateFrontendStatus = function () {
     hungerStat.textContent = pet.hunger;
     happinessStat.textContent = pet.happiness;
     sleepStat.textContent = pet.sleep;
     energyStat.textContent = pet.energy;
+  
+    if(hungerStat.textContent > 80){
+      document.getElementById("hungerchangearrow").classList.replace("bg-green-100","bg-red-100");
+      document.getElementById("greenarrow").classList.replace("text-green-500","text-red-500");
+    }
   };
 
   let updateIsAliveStatus = function () {
@@ -63,6 +69,8 @@ window.addEventListener("load", function () {
     pet["hunger"] += 20;
     pet["energy"] -= 7;
     pet["sleep"] += 10;
+
+    
     limitPetStats();
 
     updateIsAliveStatus();
@@ -72,7 +80,7 @@ window.addEventListener("load", function () {
 
   window.sleep = function () {
     pet["happiness"] += 7;
-    pet["sleep"] -= 20;
+    pet["sleep"] += 20;
     pet["energy"] += 10;
     pet["hunger"] -= 12;
     limitPetStats();
