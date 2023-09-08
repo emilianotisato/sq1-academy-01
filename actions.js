@@ -24,7 +24,9 @@ window.addEventListener("load", function () {
       pet["happiness"] < min
     ) {
       pet["isAlive"] = false;
-    } else {
+      document.getElementById("hungerchangearrow").classList.replace("bg-green-100","bg-red-100");
+    } 
+    else {
       pet["isAlive"] = true;
     }
 
