@@ -14,6 +14,27 @@ window.addEventListener("load", function () {
     happinessStat.textContent = pet.happiness;
     sleepStat.textContent = pet.sleep;
     energyStat.textContent = pet.energy;
+
+    if (hungerStat.textContent>75){
+    document.getElementById("HungerChangeArrow").classList.replace("bg-green-100","bg-red-100");
+    document.getElementById("GreenArrow").classList.replace("text-green-500","text-red-500");
+  }
+
+  if (happinessStat.textContent<40){
+    document.getElementById("HappinessChangeArrow").classList.replace("bg-green-100","bg-red-100");
+    document.getElementById("GreenArrow2").classList.replace("text-green-500","text-red-500");
+  }
+
+  if (sleepStat.textContent>75){
+    document.getElementById("SleepChangeArrow").classList.replace("bg-green-100","bg-red-100");
+    document.getElementById("GreenArrow3").classList.replace("text-green-500","text-red-500");
+  }
+
+  if (energyStat.textContent<80){
+    document.getElementById("EnergyChangeArrow").classList.replace("bg-green-100","bg-red-100");
+    document.getElementById("GreenArrow4").classList.replace("text-green-500","text-red-500");
+  }
+
   };
 
   let updateIsAliveStatus = function () {
@@ -24,7 +45,6 @@ window.addEventListener("load", function () {
       pet["happiness"] < min
     ) {
       pet["isAlive"] = false;
-      document.getElementById("hungerchangearrow").classList.replace("bg-green-100","bg-red-100");
     } 
     else {
       pet["isAlive"] = true;
@@ -40,32 +60,39 @@ window.addEventListener("load", function () {
     return pet["isAlive"];
   };
 
-  window.play = function () {
-    pet["happiness"] += 20;
-    pet["energy"] -= 10;
-    pet["hunger"] += 12;
-    pet["sleep"] += 7;
+  let limitPetStats = function () {
+    pet["happiness"] = Math.min(Math.max(pet["happiness"],min),max);
+    pet["energy"] = Math.min(Math.max(pet["energy"],min),max);
+    pet["hunger"] = Math.min(Math.max(pet["hunger"],min),max);
+    pet["sleep"] = Math.min(Math.max(pet["sleep"],min),max);
+  }
 
+  window.play = function () {
+    pet["happiness"] += 10;
+    pet["energy"] -= 10;
+    pet["hunger"] += 10;
+    pet["sleep"] += 10;
+    limitPetStats();
     updateIsAliveStatus();
     updateFrontendStatus();
   };
 
   window.feed = function () {
-    pet["happiness"] -= 12;
+    pet["happiness"] += 10;
     pet["hunger"] -= 20;
-    pet["energy"] -= 7;
+    pet["energy"] -= 10;
     pet["sleep"] += 10;
-
+    limitPetStats();
     updateIsAliveStatus();
     updateFrontendStatus();
   };
 
   window.sleep = function () {
-    pet["happiness"] += 7;
+    pet["happiness"] += 10;
     pet["sleep"] -= 20;
     pet["energy"] += 10;
-    pet["hunger"] += 12;
-
+    pet["hunger"] += 10;
+    limitPetStats();
     updateIsAliveStatus();
     updateFrontendStatus();
   };
