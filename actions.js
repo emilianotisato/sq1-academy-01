@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
   let happinessStat = document.getElementById("happinesStat");
   let sleepStat = document.getElementById("sleepStat");
   let energyStat = document.getElementById("energyStat");
+  
 
   window.updateFrontendStatus = function () {
     hungerStat.textContent = pet.hunger;
@@ -24,7 +25,12 @@ window.addEventListener("load", function () {
       pet["happiness"] < min
     ) {
       pet["isAlive"] = false;
-    } else {
+      document.getElementById('hideButtons').style.visibility = 'hidden';
+      document.getElementById('petImage').style.visibility = 'hidden';
+      document.getElementById('gameOver').classList.replace("invisible","visible");
+       
+    } else 
+    {
       pet["isAlive"] = true;
     }
 
@@ -34,7 +40,7 @@ window.addEventListener("load", function () {
       feedButton.disabled = true;
       sleepButton.disabled = true;
     }
-
+    
     return pet["isAlive"];
   };
 

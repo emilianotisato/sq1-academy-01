@@ -10,13 +10,14 @@
     <script src="db.js"></script>
     <script src="actions.js"></script>
     <script src="helpers.js"></script>
+    <!--<script src="hide.js"></script>-->
 
     <style>
         .deadPet {
-            -moz-animation: deadPet .8s infinite linear;
-            -o-animation: deadPet .8s infinite linear;
-            -webkit-animation: deadPet .8s infinite linear;
-            animation: deadPet .8s infinite linear;
+            -moz-animation: deadPet .8s  linear 4;
+            -o-animation: deadPet .8s  linear 4;
+            -webkit-animation: deadPet .8s linear 4;
+            animation: deadPet .8s linear 4;
         }
 
         @keyframes deadPet {
@@ -37,6 +38,7 @@
             }
         }
     </style>
+    
     <script>
         // int();
         // promptUser();
@@ -137,10 +139,10 @@
             <main>
                 <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 flex justify-center">
                     <div class="flex flex-col">
-                        <img id="petImage" src="penguin.png" />
-
+                        <img id="petImage" src="penguin.png" class="visible" />
+                        <p id="gameOver" class=" flex justify-center  text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 invisible"> Game Over </p>
                         <div class="mt-10 flex justify-center">
-                            <span class="isolate inline-flex rounded-md shadow-sm">
+                            <span id="hideButtons"class="isolate inline-flex rounded-md shadow-sm">
                                 <button onclick="feed()" type="button" id="feedButton"
                                     class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -179,6 +181,7 @@
 
                     </div>
                 </div>
+                
             </main>
         </div>
 
