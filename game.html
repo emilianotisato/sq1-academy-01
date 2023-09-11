@@ -137,8 +137,8 @@
             <main>
                 <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 flex justify-center">
                     <div class="flex flex-col">
-                        <img id="petImage" src="penguin.png" />
-
+                        <img id="petImage" src="penguin.png" class="visible" />
+						<p id="gameOver" class="flex justify-center text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 invisible">Game Over</p>
                         <div class="mt-10 flex justify-center">
                             <span class="isolate inline-flex rounded-md shadow-sm">
                                 <button onclick="feed()" type="button" id="feedButton"
@@ -178,9 +178,13 @@
                         </div>
 
                     </div>
+					
                 </div>
+				
             </main>
+			
         </div>
+		
 
     </div>
 </body>
