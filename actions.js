@@ -15,23 +15,23 @@ window.addEventListener("load", function () {
     sleepStat.textContent = pet.sleep;
     energyStat.textContent = pet.energy;
 
-    if (hungerStat.textContent>75){
-    document.getElementById("HungerChangeArrow").classList.replace("bg-green-100","bg-red-100");
+  if (hungerStat.textContent>=75){
+    document.getElementById("HungerChangeArrow").classList.replace("bg-red-100","bg-green-100");
     document.getElementById("GreenArrow").classList.replace("text-green-500","text-red-500");
   }
-
-  if (happinessStat.textContent<40){
-    document.getElementById("HappinessChangeArrow").classList.replace("bg-green-100","bg-red-100");
+  
+  if (happinessStat.textContent>=70){
+    document.getElementById("HappinessChangeArrow").classList.replace("bg-red-100","bg-green-100");
     document.getElementById("GreenArrow2").classList.replace("text-green-500","text-red-500");
-  }
+ }
 
-  if (sleepStat.textContent>75){
-    document.getElementById("SleepChangeArrow").classList.replace("bg-green-100","bg-red-100");
+  if (sleepStat.textContent>=75){
+    document.getElementById("SleepChangeArrow").classList.replace("bg-red-100","bg-green-100");
     document.getElementById("GreenArrow3").classList.replace("text-green-500","text-red-500");
   }
 
-  if (energyStat.textContent<80){
-    document.getElementById("EnergyChangeArrow").classList.replace("bg-green-100","bg-red-100");
+  if (energyStat.textContent<=80){
+    document.getElementById("EnergyChangeArrow").classList.replace("bg-red-100","bg-green-100");
     document.getElementById("GreenArrow4").classList.replace("text-green-500","text-red-500");
   }
 
