@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-gray-100">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tamagotchi</title>
@@ -10,204 +11,181 @@
     <script src="actions.js"></script>
     <script src="helpers.js"></script>
 
+    <style>
+        .deadPet {
+			-moz-animation: deadPet .8s linear 3;
+            -o-animation: deadPet .8s linear 3;
+            -webkit-animation: deadPet .8s linear 3;
+            animation: deadPet .8s linear 3;
+        }
+
+        @keyframes deadPet {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            30% {
+                transform: rotate(110deg);
+            }
+
+            65% {
+                transform: rotate(235deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
     <script>
-      // int();
-      // promptUser();
-    
-      window.addEventListener('load', function () {
-	let hunger = document.getElementById('hungerStat');
-	hunger.textContent = pet.hunger;
+        // int();
+        // promptUser();
 
-	let happiness = document.getElementById('happinesStat');
-	happiness.textContent = pet.happiness;
-
-	let sleep = document.getElementById('sleepStat');
-	sleep.textContent = pet.sleep;
-
-	let energy = document.getElementById('energyStat');
-	energy.textContent = pet.energy;
-      
-      });
+        window.addEventListener('load', function() {
+            updateFrontendStatus();
+        });
     </script>
-  </head>
-  <body class="h-full">
+</head>
+
+<body class="h-full">
     <div class="min-h-full">
 
-      <div class="max-w-7xl m-auto">
-	<header class="bg-white shadow">
-		<div>
-		  <dl
-		    class="mt-5 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-4 md:divide-x md:divide-y-0"
-		  >
-		    <div class="px-4 py-5 sm:p-6">
-		      <dt class="text-base font-normal text-gray-900">Hunger</dt>
-		      <dd
-			class="mt-1 flex items-baseline justify-between md:block lg:flex"
-		      >
-			<div
-			  class="flex items-baseline text-2xl font-semibold text-indigo-600"
-			>
-			  <span id="hungerStat"></span>
-			 
-			</div>
-	
-			<div
-			  class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0"
-			>
-			  <svg
-			    class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
-			    viewBox="0 0 20 20"
-			    fill="currentColor"
-			    aria-hidden="true"
-			  >
-			    <path
-			      fill-rule="evenodd"
-			      d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"
-			      clip-rule="evenodd"
-			    />
-			  </svg>
-			</div>
-		      </dd>
-		    </div>
-		    <div class="px-4 py-5 sm:p-6">
-		      <dt class="text-base font-normal text-gray-900">Happiness</dt>
-		      <dd
-			class="mt-1 flex items-baseline justify-between md:block lg:flex"
-		      >
-			<div
-			  class="flex items-baseline text-2xl font-semibold text-indigo-600"
-			>
-			  <span id="happinesStat"></span>
-			  
-			</div>
-	
-			<div
-			  class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0"
-			>
-			  <svg
-			    class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
-			    viewBox="0 0 20 20"
-			    fill="currentColor"
-			    aria-hidden="true"
-			  >
-			    <path
-			      fill-rule="evenodd"
-			      d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"
-			      clip-rule="evenodd"
-			    />
-			  </svg>
-			</div>
-		      </dd>
-		    </div>
-		    <div class="px-4 py-5 sm:p-6">
-		      <dt class="text-base font-normal text-gray-900">Sleep</dt>
-		      <dd
-			class="mt-1 flex items-baseline justify-between md:block lg:flex"
-		      >
-			<div
-			  class="flex items-baseline text-2xl font-semibold text-indigo-600"
-			>
-			  <span id="sleepStat"></span>
-			  
-			</div>
-	
-			<div
-			  class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0"
-			>
-			  <svg
-			    class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-red-500"
-			    viewBox="0 0 20 20"
-			    fill="currentColor"
-			    aria-hidden="true"
-			  >
-			    <path
-			      fill-rule="evenodd"
-			      d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z"
-			      clip-rule="evenodd"
-			    />
-			  </svg>
-			</div>
-		      </dd>
-		    </div>
-		    <div class="px-4 py-5 sm:p-6">
-		      <dt class="text-base font-normal text-gray-900">Energy</dt>
-		      <dd
-			class="mt-1 flex items-baseline justify-between md:block lg:flex"
-		      >
-			<div
-			  class="flex items-baseline text-2xl font-semibold text-indigo-600"
-			>
-			  <span id="energyStat"></span>
-			  
-			</div>
-	
-			<div
-			  class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0"
-			>
-			  <svg
-			    class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-red-500"
-			    viewBox="0 0 20 20"
-			    fill="currentColor"
-			    aria-hidden="true"
-			  >
-			    <path
-			      fill-rule="evenodd"
-			      d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z"
-			      clip-rule="evenodd"
-			    />
-			  </svg>
-			</div>
-		      </dd>
-		    </div>
-		  </dl>
-		</div>
-	      </header>
-	      <main>
-		<div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 flex justify-center">
-		  <div class="flex flex-col">
-		    <img src="penguin.png" />
-	
-		    <div class="mt-10 flex justify-center">
-		      <span class="isolate inline-flex rounded-md shadow-sm">
-			<button
-			  type="button"
-			  class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-			>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-				<path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
-			      </svg>
-			      
-			  Feed
-			</button>
-			<button
-			  type="button"
-			  class="relative inline-flex items-center gap-x-1.5 bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-			>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-			      </svg>
-			      
-			  Play
-			</button>
-		     
-			<button
-			  type="button"
-			  class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
-			>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-			      </svg>
-			      
-			  Sleep
-			</button>
-		      </span>
-		    </div>
-		  </div>
-		</div>
-	      </main>
-      </div>
-      
+        <div class="max-w-7xl m-auto">
+            <header class="bg-white shadow">
+                <div>
+                    <dl
+                        class="mt-5 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-4 md:divide-x md:divide-y-0">
+                        <div class="px-4 py-5 sm:p-6">
+                            <dt class="text-base font-normal text-gray-900">Hunger</dt>
+                            <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
+                                <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+                                    <span id="hungerStat"></span>
+
+                                </div>
+
+                                <div
+                                    class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
+                                    <svg class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </dd>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <dt class="text-base font-normal text-gray-900">Happiness</dt>
+                            <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
+                                <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+                                    <span id="happinesStat"></span>
+
+                                </div>
+
+                                <div
+                                    class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
+                                    <svg class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </dd>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <dt class="text-base font-normal text-gray-900">Sleep</dt>
+                            <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
+                                <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+                                    <span id="sleepStat"></span>
+
+                                </div>
+
+                                <div
+                                    class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+                                    <svg class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-red-500"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </dd>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <dt class="text-base font-normal text-gray-900">Energy</dt>
+                            <dd class="mt-1 flex items-baseline justify-between md:block lg:flex">
+                                <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+                                    <span id="energyStat"></span>
+
+                                </div>
+
+                                <div
+                                    class="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+                                    <svg class="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-red-500"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </header>
+            <main>
+                <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 flex justify-center">
+                    <div class="flex flex-col">
+                        <img id="petImage" src="penguin.png" class="visible" />
+                        <div class="mt-10 flex justify-center">
+                            <span class="isolate inline-flex rounded-md shadow-sm">
+                                <button onclick="feed()" type="button" id="feedButton"
+                                    class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+                                    </svg>
+
+                                    Feed
+                                </button>
+                                <button onclick="play(event)" type="button" id="playButton"
+                                    class="relative inline-flex items-center gap-x-1.5 bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                                    </svg>
+
+                                    Play
+                                </button>
+
+                                <button onclick="sleep()" type="button" id="sleepButton"
+                                    class="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                                    </svg>
+
+                                    Sleep
+                                </button>
+                            </span>
+                        </div>
+
+                    </div>
+					
+                </div>
+				
+            </main>
+			
+        </div>
+		
+
     </div>
-  </body>
+</body>
+
 </html>
