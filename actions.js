@@ -5,7 +5,7 @@ window.addEventListener("load", function () {
   let feedButton = document.getElementById("feedButton");
   let sleepButton = document.getElementById("sleepButton");
   let hungerStat = document.getElementById("hungerStat");
-  let happinessStat = document.getElementById("happinesStat");
+  let happinessStat = document.getElementById("happinessStat");
   let sleepStat = document.getElementById("sleepStat");
   let energyStat = document.getElementById("energyStat");
 
@@ -14,6 +14,45 @@ window.addEventListener("load", function () {
     happinessStat.textContent = pet.happiness;
     sleepStat.textContent = pet.sleep;
     energyStat.textContent = pet.energy;
+
+    //HUNGER
+  if (hungerStat.textContent>=0 && hungerStat.textContent<40){
+    document.getElementById("HungerChangeArrow").classList.replace("bg-green-100","bg-red-100");
+    document.getElementById("GreenArrow").classList.replace("text-green-500","text-red-500");
+  }
+  else if (hungerStat.textContent>40 || hungerStat.textContent==100){
+    document.getElementById("HungerChangeArrow").classList.replace("bg-red-100","bg-green-100");
+    document.getElementById("GreenArrow").classList.replace("text-red-500","text-green-500");
+  }
+  //HAPPINESS
+  if (happinessStat.textContent>=0 && happinessStat.textContent<30){
+    document.getElementById("HappinessChangeArrow").classList.replace("bg-green-100","bg-red-100");
+    document.getElementById("GreenArrow2").classList.replace("text-green-500","text-red-500");
+  }
+  else if (happinessStat.textContent>40 || happinessStat.textContent==100){
+    document.getElementById("HappinessChangeArrow").classList.replace("bg-red-100","bg-green-100");
+    document.getElementById("GreenArrow2").classList.replace("text-red-500","text-green-500");
+  }
+
+  //SLEEP
+    if (sleepStat.textContent>=0 && sleepStat.textContent<20){
+      document.getElementById("SleepChangeArrow").classList.replace("bg-red-100","bg-green-100");
+      document.getElementById("GreenArrow3").classList.replace("text-red-500","text-green-500");
+    }
+    else if (sleepStat.textContent>20 || sleepStat.textContent==100){
+      document.getElementById("SleepChangeArrow").classList.replace("bg-green-100","bg-red-100");
+      document.getElementById("GreenArrow3").classList.replace("text-green-500","text-red-500");
+    }
+  //ENERGY
+    if (energyStat.textContent>=0 && energyStat.textContent<50){
+      document.getElementById("EnergyChangeArrow").classList.replace("bg-green-100","bg-red-100");
+      document.getElementById("GreenArrow4").classList.replace("text-green-500","text-red-500");
+    }
+    else if (energyStat.textContent>50 || energyStat.textContent==100){
+      document.getElementById("EnergyChangeArrow").classList.replace("bg-red-100","bg-green-100");
+      document.getElementById("GreenArrow4").classList.replace("text-red-500","text-green-500");
+    }
+
   };
 
   let updateIsAliveStatus = function () {
@@ -24,7 +63,8 @@ window.addEventListener("load", function () {
       pet["happiness"] <= min
     ) {
       pet["isAlive"] = false;
-    } else {
+    } 
+    else {
       pet["isAlive"] = true;
     }
 
@@ -33,8 +73,10 @@ window.addEventListener("load", function () {
       playButton.disabled = true;
       feedButton.disabled = true;
       sleepButton.disabled = true;
-    }
-
+    document.getElementById("playButton").style.backgroundColor = "red";
+    document.getElementById("feedButton").style.backgroundColor="red";
+    document.getElementById("sleepButton").style.backgroundColor="red";
+  }
     return pet["isAlive"];
   };
 
@@ -43,9 +85,9 @@ window.addEventListener("load", function () {
     pet["energy"] = Math.min(Math.max(pet["energy"],min),max);
     pet["hunger"] = Math.min(Math.max(pet["hunger"],min),max);
     pet["sleep"] = Math.min(Math.max(pet["sleep"],min),max);
+
    
   }
-
 
   window.play = function () {
     pet["happiness"] += 20;
@@ -59,18 +101,18 @@ window.addEventListener("load", function () {
   };
 
   window.feed = function () {
-    pet["happiness"] -= 12;
+    pet["happiness"] += 10;
     pet["hunger"] -= 20;
-    pet["energy"] -= 7;
+    pet["energy"] -= 10;
     pet["sleep"] += 10;
 
-    limitPetStats(); 
+    limitPetStats();
     updateIsAliveStatus();
     updateFrontendStatus();
   };
 
   window.sleep = function () {
-    pet["happiness"] += 7;
+    pet["happiness"] += 10;
     pet["sleep"] -= 20;
     pet["energy"] += 10;
     pet["hunger"] += 12;
