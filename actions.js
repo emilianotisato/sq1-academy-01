@@ -24,8 +24,6 @@ window.addEventListener("load", function () {
       pet["happiness"] <= min
     ) {
       pet["isAlive"] = false;
-      document.getElementById('petImage').style.visibility = 'hidden';
-      document.getElementById('gameOver').classList.replace("invisible", "visible");
     } else {
       pet["isAlive"] = true;
     }
