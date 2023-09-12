@@ -73,8 +73,10 @@ window.addEventListener("load", function () {
       playButton.disabled = true;
       feedButton.disabled = true;
       sleepButton.disabled = true;
-    }
-
+    document.getElementById("playButton").style.backgroundColor = "red";
+    document.getElementById("feedButton").style.backgroundColor="red";
+    document.getElementById("sleepButton").style.backgroundColor="red";
+  }
     return pet["isAlive"];
   };
 
