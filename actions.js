@@ -85,14 +85,17 @@ window.addEventListener("load", function () {
     pet["energy"] = Math.min(Math.max(pet["energy"],min),max);
     pet["hunger"] = Math.min(Math.max(pet["hunger"],min),max);
     pet["sleep"] = Math.min(Math.max(pet["sleep"],min),max);
+
+   
   }
 
   window.play = function () {
-    pet["happiness"] += 10;
+    pet["happiness"] += 20;
     pet["energy"] -= 10;
-    pet["hunger"] += 10;
-    pet["sleep"] += 10;
-    limitPetStats();
+    pet["hunger"] += 12;
+    pet["sleep"] += 7;
+
+    limitPetStats(); 
     updateIsAliveStatus();
     updateFrontendStatus();
   };
@@ -102,6 +105,7 @@ window.addEventListener("load", function () {
     pet["hunger"] -= 20;
     pet["energy"] -= 10;
     pet["sleep"] += 10;
+
     limitPetStats();
     updateIsAliveStatus();
     updateFrontendStatus();
@@ -111,8 +115,9 @@ window.addEventListener("load", function () {
     pet["happiness"] += 10;
     pet["sleep"] -= 20;
     pet["energy"] += 10;
-    pet["hunger"] += 10;
-    limitPetStats();
+    pet["hunger"] += 12;
+
+    limitPetStats(); 
     updateIsAliveStatus();
     updateFrontendStatus();
   };
